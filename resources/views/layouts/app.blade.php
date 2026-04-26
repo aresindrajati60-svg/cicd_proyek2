@@ -56,7 +56,8 @@
             padding: 24px 16px;
             z-index: 100;
             box-shadow: 4px 0 24px rgba(15, 76, 138, 0.25);
-            overflow: hidden;
+            overflow-y: auto;
+            overflow-x: hidden;
         }
 
         /* Decorative circles mimicking login page bg */
