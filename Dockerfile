@@ -42,6 +42,9 @@ RUN composer install --optimize-autoloader --no-dev
 # Set permission
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
+# Install dependency frontend + build Vite
+RUN npm install && npm run build
+
 # Copy konfigurasi Nginx dan Supervisor
 COPY docker/nginx.conf /etc/nginx/nginx.conf
 COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
