@@ -6,6 +6,9 @@ RUN apk add --no-cache \
     nginx \
     nodejs \
     npm \
+    python3 \
+    make \
+    g++ \
     curl \
     zip \
     unzip \
