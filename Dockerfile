@@ -1,30 +1,11 @@
-# ======================
-# STAGE 1: FRONTEND BUILD
-# ======================
-FROM node:20 AS frontend
-
-WORKDIR /app
-
-# Copy dependency dulu (biar cache optimal)
-COPY package*.json ./
-
-RUN npm install
-
-# Copy semua file
-COPY . .
-
-# Build Vite
-RUN npm run build
-
-
-# ======================
-# STAGE 2: LARAVEL APP
-# ======================
+# Dockerfile
 FROM php:8.2-fpm-alpine
 
-# Install system dependencies
+# Install dependencies sistem
 RUN apk add --no-cache \
     nginx \
+    nodejs \
+    npm \
     curl \
     zip \
     unzip \
@@ -36,7 +17,7 @@ RUN apk add --no-cache \
     libxml2-dev \
     postgresql-dev
 
-# Install PHP extensions
+# Install ekstensi PHP
 RUN docker-php-ext-install \
     pdo_pgsql \
     mbstring \
@@ -52,19 +33,16 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html
 
-# Copy semua project
+# Copy file project
 COPY . .
 
-# Copy hasil build frontend dari stage 1
-COPY --from=frontend /app/public/build ./public/build
-
-# Install Laravel dependencies
+# Install dependencies Laravel
 RUN composer install --optimize-autoloader --no-dev
 
 # Set permission
-RUN chown -R www-data:www-data storage bootstrap/cache
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Copy config nginx & supervisor
+# Copy konfigurasi Nginx dan Supervisor
 COPY docker/nginx.conf /etc/nginx/nginx.conf
 COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
