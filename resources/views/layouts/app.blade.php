@@ -15,7 +15,7 @@
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
         /* ===== ROOT & BASE ===== */
@@ -38,7 +38,7 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-family: 'Inter', sans-serif;
             background-color: var(--bg-page);
             color: var(--text-main);
             min-height: 100vh;

@@ -39,7 +39,7 @@ class DestinasiController extends Controller
             });
         })
         ->latest()
-        ->paginate(12);
+        ->paginate(6);
 
     $prefix = $this->getPrefix();
 
